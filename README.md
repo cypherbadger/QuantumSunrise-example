@@ -18,7 +18,7 @@ Para sistemas basados en Debian/Ubuntu, puedes instalar estos componentes usando
 ```bash
 sudo apt update
 sudo apt install curl jq
-
+```
 ## Configuración de la API
 
 Para interactuar con The Graph API, necesitarás una clave API válida. Esta clave te permite autenticarte y realizar solicitudes a los subgrafos disponibles en The Graph. Reemplaza `[tu-api-key]` con tu clave personal en los comandos proporcionados.
@@ -35,7 +35,7 @@ curl -X POST \
   -H "Authorization: Bearer [tu-api-key]" \
   -d '{"query":"{ raffleEntereds(first: 1000) { id participant_ raffleId_ } }"}' \
   "https://gateway-arbitrum.network.thegraph.com/api/[tu-api-key]/subgraphs/id/55pRDYgB2cBDacz6WyUV643XXerK21s3vAfdLWsYdUzo"
-
+```
 
 ### 2. Convertir JSON a CSV
 
@@ -47,7 +47,7 @@ curl -X POST \
   -H "Authorization: Bearer [tu-api-key]" \
   -d '{"query":"{ raffleEntereds(first: 1000) { id participant_ raffleId_ } }"}' \
   "https://gateway-arbitrum.network.thegraph.com/api/[tu-api-key]/subgraphs/id/55pRDYgB2cBDacz6WyUV643XXerK21s3vAfdLWsYdUzo" | jq -r '( .data.raffleEntereds[0] | keys_unsorted) as $keys | $keys, (.data.raffleEntereds[] | [.[$keys[]]])' | sed -e 's/\t/,/g' > output.csv
-
+```
 
 ## Sobre QuantumFair
 
